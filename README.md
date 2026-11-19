@@ -1,4 +1,4 @@
-# من يعرف عُمان أكثر؟ | Oman National Day Quiz
+# من يعرف عُمان أكثر؟ | Oman National Day Eent
 
 An Arabic-first, real-time cultural quiz experience built for an Oman National Day event. Participants join from their phones using a QR code, answer questions through interactive cards, and follow the competition on a large live display.
 
