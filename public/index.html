@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090807">
+  <title>من يعرف عُمان أكثر؟ | مسابقة اليوم الوطني</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-bg participant-page">
+  <main class="container narrow">
+    <div class="brand-row">
+      
+      <div class="brand-emblem">
+          <img src="assets/images/csgj.png" alt="Logo">
+      </div>
+
+
+      <div>
+        <p class="brand-title">من يعرف عُمان أكثر؟</p>
+        <p class="brand-subtitle">مسابقة اليوم الوطني العُماني</p>
+      </div>
+    </div>
+    <div class="participant-status-strip">
+      <span id="participantLivePill" class="status-pill"><span class="status-dot"></span> التسجيل مفتوح</span>
+    </div>
+
+    <div id="demoNotice" class="demo-banner hidden">وضع تجريبي محلي: البيانات محفوظة على هذا المتصفح فقط. لا تستخدم هذه النسخة لإدارة المسابقة الفعلية قبل ربط Supabase.</div>
+    <div id="globalError" class="alert error hidden" role="alert"></div>
+
+    <section id="welcomeView" class="panel hero">
+      <span class="eyebrow">🇴🇲 احتفل بمعرفتك عن عُمان</span>
+      <div class="hero-flag">🏆</div>
+      <h1>من يعرف <span>عُمان</span> أكثر؟</h1>
+      <p>اختبر معلوماتك عن سلطنة عُمان، واختر من بين تسع بطاقات. أكمل ثلاثة أسئلة بشكل صحيح، وانتظر إعلان الفائزين على الشاشة الكبيرة!</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>9</strong><span>بطاقات وتحديات</span></div>
+        <div class="hero-stat"><strong>3</strong><span>إجابات صحيحة للفوز</span></div>
+        <div class="hero-stat"><strong>3</strong><span>فائزين فقط</span></div>
+      </div>
+      <div style="margin-top:28px">
+        <button id="showRegisterBtn" class="btn btn-primary btn-block">ابدأ المشاركة <span aria-hidden="true">←</span></button>
+      </div>
+      <p class="hint" style="margin:18px auto 0">المشاركة متاحة من الهاتف. أدخل اسمك كما ترغب أن يظهر عند إعلان الفائزين.</p>
+    </section>
+
+    <section id="registrationClosedView" class="panel panel-pad hidden">
+      <div class="center-state" style="min-height:48vh">
+        <div class="state-icon">🔒</div>
+        <span class="status-pill">التسجيل مغلق</span>
+        <h2>بدأ التحدي!</h2>
+        <p>انتهت فترة التسجيل بعد بدء المسابقة. لا يمكن تسجيل مشاركين جدد الآن.</p>
+        <p class="hint">إذا كنت قد سجلت مسبقاً، افتح صفحة المشاركة نفسها من الجهاز والمتصفح اللذين استخدمتهما عند التسجيل.</p>
+      </div>
+    </section>
+
+    <section id="registerView" class="panel panel-pad hidden">
+      <div style="text-align:center;margin-bottom:22px">
+        <span class="eyebrow">خطوة واحدة ونبدأ</span>
+        <h2 style="font-size:28px;color:#fff;margin:15px 0 5px">سجّل اسمك</h2>
+        <p class="hint">استخدم اسمك الحقيقي حتى يتمكن المنظم من التحقق من الفائزين.</p>
+      </div>
+      <form id="registerForm" class="form-stack">
+        <div>
+          <label class="form-label" for="participantName">الاسم</label>
+          <input class="text-input" id="participantName" name="name" maxlength="40" autocomplete="name" placeholder="اكتب اسمك هنا" required>
+        </div>
+        <button id="registerSubmit" class="btn btn-primary btn-block" type="submit">تأكيد التسجيل</button>
+        <button id="backToWelcome" class="btn btn-secondary btn-block" type="button">رجوع</button>
+      </form>
+    </section>
+
+    <section id="waitingView" class="panel panel-pad hidden">
+      <div class="center-state" style="min-height:48vh">
+        <div class="state-icon">⏳</div>
+        <span class="status-pill"><span class="status-dot"></span> تم التسجيل</span>
+        <h2>استعد للتحدي!</h2>
+        <p id="waitingText">تم تسجيل اسمك بنجاح. ستبدأ الأسئلة تلقائياً عندما يفتح المنظم المسابقة.</p>
+        <div class="alert" style="max-width:460px;width:100%">لا تغلق الصفحة. ستنتقل إلى البطاقات تلقائياً عند بدء المسابقة.</div>
+      </div>
+    </section>
+
+    <section id="pausedView" class="panel panel-pad hidden">
+      <div class="center-state" style="min-height:48vh">
+        <div class="state-icon">⏸️</div>
+        <h2>توقف مؤقت</h2>
+        <p>المسابقة متوقفة مؤقتاً من المنظم. انتظر قليلاً، وستعود المسابقة تلقائياً عند استئنافها.</p>
+      </div>
+    </section>
+
+    <section id="gameView" class="hidden">
+      <div class="topbar">
+        <div>
+          <h2 class="topbar-title">أهلاً، <span id="participantDisplayName">مشارك</span></h2>
+          <p class="topbar-sub">اختر البطاقات التي تريدها، وأجب عن ثلاثة أسئلة بشكل صحيح.</p>
+        </div>
+        <span class="status-pill live"><span class="status-dot"></span> المسابقة مباشرة</span>
+      </div>
+      <div class="panel progress-panel">
+        <div class="progress-head"><span>إجاباتك الصحيحة</span><span class="progress-number" id="progressNumber">0 / 3</span></div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+      <div id="cardsGrid" class="cards-grid" aria-label="بطاقات الأسئلة"></div>
+      <p class="hint" style="text-align:center;margin:17px 0 0">كل بطاقة تسمح بمحاولة واحدة فقط. اختر إجابتك بعناية.</p>
+    </section>
+
+    <section id="finishedView" class="panel panel-pad hidden">
+      <div class="center-state" style="min-height:48vh">
+        <div id="finishedIcon" class="state-icon">🎉</div>
+        <span id="finishedBadge" class="status-pill">انتهت المشاركة</span>
+        <h2 id="finishedTitle">شكراً لمشاركتك!</h2>
+        <p id="finishedMessage">اكتملت المسابقة. تابع شاشة العرض لمعرفة الفائزين.</p>
+      </div>
+    </section>
+
+    <div class="screen-footer-group">
+      <p class="screen-footer">كل عام وعُمان وأهلها بخير</p>
+      <p class="screen-footer screen-credit">
+          Made by Faisal Al Breiki & Juhaina Al Subhi
+      </p>
+    </div>
+  </main>
+
+  <div id="questionBackdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="questionTitle">
+    <div class="question-modal">
+      <div class="eyebrow" style="margin:0 auto 14px;width:max-content">تحدي عُمان</div>
+      <h2 id="questionTitle">السؤال</h2>
+      <p class="question-help">اختر إجابة واحدة. لا يمكن تغيير الإجابة بعد الإرسال.</p>
+      <div id="optionsGrid" class="options-grid"></div>
+      <div id="answerFeedback" class="feedback" aria-live="polite"></div>
+      <div style="margin-top:14px"><button id="closeQuestionBtn" class="btn btn-secondary btn-block hidden" type="button">العودة إلى البطاقات</button></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script>if (window.APP_CONFIG && window.APP_CONFIG.DEMO_MODE) document.write('<script src="../demo/demo-data.js"><\/script>');</script>
+  <script src="js/backend.js"></script>
+  <script src="js/participant.js"></script>
+</body>
+</html>

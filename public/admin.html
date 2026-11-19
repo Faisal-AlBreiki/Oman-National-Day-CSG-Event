@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090807">
+  <title>لوحة الإدارة | من يعرف عُمان أكثر؟</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-bg admin-page">
+  <main class="container admin-container">
+    <div class="brand-row admin-brand">
+      
+      <div class="brand-emblem">
+        <img src="assets/images/csgj.png" alt="Logo">
+      </div>
+
+      <div><p class="brand-title">من يعرف عُمان أكثر؟</p><p class="brand-subtitle">لوحة إدارة المسابقة</p></div>
+    </div>
+
+    <div id="demoNotice" class="demo-banner hidden">وضع تجريبي محلي: رمز الدخول التجريبي هو <strong>1400</strong>. لا تستخدم وضع Demo أثناء الفعالية الفعلية.</div>
+    <div id="loginError" class="alert error hidden" role="alert"></div>
+
+    <section id="loginView" class="admin-login">
+      <div class="panel">
+        <div style="text-align:center;margin-bottom:24px">
+          <div class="state-icon" style="margin:0 auto 14px">🔐</div>
+          <h1 style="margin:0;color:#fff;font-size:29px">دخول المنظم</h1>
+          <p class="hint">هذه الصفحة مخصصة لفريق تنظيم الفعالية فقط.</p>
+        </div>
+        <form id="loginForm" class="form-stack">
+          <div id="demoPinField"><label class="form-label" for="demoPin">رمز الإدارة التجريبي</label><input id="demoPin" class="text-input" type="password" inputmode="numeric" placeholder="أدخل الرمز"></div>
+          <div id="emailField" class="hidden"><label class="form-label" for="adminEmail">البريد الإلكتروني</label><input id="adminEmail" class="text-input" type="email" autocomplete="username" placeholder="admin@example.com"></div>
+          <div id="passwordField" class="hidden"><label class="form-label" for="adminPassword">كلمة المرور</label><input id="adminPassword" class="text-input" type="password" autocomplete="current-password" placeholder="كلمة المرور"></div>
+          <button id="loginButton" class="btn btn-primary btn-block" type="submit">دخول لوحة الإدارة</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="dashboardView" class="hidden admin-dashboard">
+      <div class="topbar admin-topbar">
+        <div><h1 class="topbar-title">لوحة التحكم</h1><p class="topbar-sub">إدارة المسابقة ومتابعة النشاط المباشر</p></div>
+        <div class="button-row">
+          <a class="btn btn-secondary btn-small" href="screen.html" target="_blank" rel="noopener">فتح شاشة العرض ↗</a>
+          <button id="logoutBtn" class="btn btn-secondary btn-small" type="button">تسجيل الخروج</button>
+        </div>
+      </div>
+
+      <section class="panel panel-pad admin-control-panel">
+        <div class="admin-control-head">
+          <div><h2 class="section-title">حالة المسابقة</h2><p id="controlHint" class="hint">يمكن للجمهور التسجيل الآن. ابدأ المسابقة عندما تكون مستعداً.</p></div>
+          <span id="competitionStatus" class="status-pill"><span class="status-dot"></span> التسجيل مفتوح</span>
+        </div>
+        <div class="button-row admin-control-buttons">
+          <button id="startBtn" class="btn btn-success btn-small">▶ بدء المسابقة</button>
+          <button id="pauseBtn" class="btn btn-secondary btn-small">⏸ إيقاف مؤقت</button>
+          <button id="resumeBtn" class="btn btn-success btn-small hidden">▶ استئناف</button>
+          <button id="endBtn" class="btn btn-danger btn-small">⏹ إنهاء المسابقة</button>
+          <button id="resetBtn" class="btn btn-secondary btn-small hidden">↻ جولة جديدة</button>
+        </div>
+      </section>
+
+      <div class="admin-grid">
+        <div class="admin-main-column">
+          <section class="panel panel-pad admin-stats-panel">
+            <div class="admin-panel-heading"><h2 class="section-title">إحصائيات المسابقة</h2><small>تتحدث تلقائياً</small></div>
+            <div class="stat-grid">
+              <div class="stat-card"><strong id="participantCount">0</strong><span>إجمالي المشاركين</span></div>
+              <div class="stat-card"><strong id="startedCount">0</strong><span>بدأوا الإجابة</span></div>
+              <div class="stat-card"><strong id="completedCount">0 / 3</strong><span>المراكز المحجوزة</span></div>
+            </div>
+            <div class="admin-export-row"><button id="exportBtn" class="btn btn-secondary btn-small">⬇ تصدير النتائج CSV</button></div>
+          </section>
+
+          <section class="panel panel-pad admin-activity-panel">
+            <div class="admin-panel-heading"><h2 class="section-title">Live Activity</h2><small>الإجابات الصحيحة فقط</small></div>
+            <div id="activityList" class="activity-list"><div class="hint">ستظهر هنا الإجابات الصحيحة فور تسجيلها.</div></div>
+          </section>
+
+          <section class="panel panel-pad admin-participants-panel">
+            <div class="admin-panel-heading">
+              <h2 class="section-title">إدارة المشاركين</h2>
+              <small id="participantListCount">0 مشارك</small>
+            </div>
+            <p id="participantManagementHint" class="hint">يمكن حذف المشاركين خلال فترة التسجيل فقط.</p>
+            <input id="participantSearch" class="text-input participant-search" type="search" placeholder="ابحث عن اسم مشارك..." autocomplete="off">
+            <div id="participantsList" class="participants-list">
+              <div class="hint">سيظهر المشاركون المسجلون هنا.</div>
+            </div>
+          </section>
+
+        </div>
+
+        <div class="admin-side-column">
+          <section class="panel panel-pad admin-qr-panel">
+            <div class="admin-panel-heading"><h2 class="section-title">رابط المشاركة</h2><small>QR Code</small></div>
+            <div class="qr-wrap admin-qr-wrap">
+              <div id="adminQr" class="qr-box"><span style="color:#222;font-size:11px;text-align:center">QR</span></div>
+              <div class="url-box">
+                <p class="hint" style="margin:0 0 6px">امسح الرمز لفتح صفحة الجمهور.</p>
+                <div id="participantUrl" class="url-text"></div>
+                <div class="button-row" style="margin-top:8px"><button id="copyLinkBtn" class="btn btn-secondary btn-small">نسخ الرابط</button><a id="openParticipantLink" class="btn btn-secondary btn-small" href="index.html" target="_blank" rel="noopener">فتح الصفحة</a></div>
+              </div>
+            </div>
+          </section>
+
+          <section id="adminWinnersPanel" class="panel panel-pad admin-winners-panel hidden">
+            <div class="admin-panel-heading"><h2 class="section-title">المراكز الثلاثة المحجوزة</h2><small>للاطلاع الإداري فقط</small></div>
+            <div id="adminWinnersList" class="winner-admin-list"></div>
+          </section>
+          <section id="winnersWaitingPanel" class="panel panel-pad admin-waiting-panel">
+            <h2 class="section-title">إعلان الفائزين</h2>
+            <p class="hint">ستظهر هنا أسماء أول ثلاثة مؤهلين. لن تُعرض للجمهور حتى تنهي المسابقة من لوحة التحكم.</p>
+          </section>
+        </div>
+      </div>
+    </section>
+    <p class="screen-footer admin-footer">من يعرف عُمان أكثر؟ · لوحة المنظم</p>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="js/config.js"></script>
+  <script>if (window.APP_CONFIG && window.APP_CONFIG.DEMO_MODE) document.write('<script src="../demo/demo-data.js"><\/script>');</script>
+  <script src="js/backend.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

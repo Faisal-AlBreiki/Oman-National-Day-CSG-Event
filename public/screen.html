@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090807">
+  <title>شاشة العرض المباشر | من يعرف عُمان أكثر؟</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-bg screen-page">
+  <main class="container">
+    <header class="screen-head">
+      <div class="brand-row" style="margin:0;justify-content:flex-start">
+        
+        <div class="brand-emblem">
+          <img src="assets/images/csgj.png" alt="Logo">
+        </div>
+        
+
+        <div><p class="brand-title"> اليوم الوطني العُماني</p><p class="brand-subtitle">شاشة العرض المباشر</p></div>
+      </div>
+      <div class="button-row">
+        <button id="soundBtn" class="btn btn-secondary btn-small sound-btn" type="button">🔇 تفعيل الصوت</button>
+        <span id="screenLivePill" class="status-pill"><span class="status-dot"></span> في انتظار المسابقة</span>
+      </div>
+    </header>
+
+    <section id="publicLobby" class="screen-lobby">
+      <div class="screen-title">
+        <span class="eyebrow">🇴🇲 تحدي المعرفة العُمانية</span>
+        <h1>من يعرف <span>عُمان</span> أكثر؟</h1>
+        <p id="screenStatusText">استعدوا للمنافسة! امسحوا رمز QR للمشاركة.</p>
+      </div>
+
+      <div class="screen-live-layout">
+        <div class="screen-main-panel">
+          <div class="screen-stats">
+            <div class="screen-stat"><strong id="screenParticipantCount">0</strong><span>عدد المشاركين</span></div>
+            <div class="screen-stat"><strong id="screenStartedCount">0</strong><span>بدأوا التحدي</span></div>
+          </div>
+          <div class="screen-join-row">
+            <div id="screenQr" class="screen-qr"></div>
+            <div class="screen-join-copy">
+              <p id="screenPrompt" class="screen-prompt">امسحوا الرمز وشاركوا في التحدي!</p>
+              <span class="screen-join-note">افتحوا كاميرا الهاتف وامسحوا رمز المشاركة</span>
+            </div>
+          </div>
+        </div>
+
+
+        <aside class="screen-activity-panel" aria-live="polite" aria-label="آخر تفاعلات المسابقة">
+          <div class="screen-activity-heading">
+            <div><h2>Live Activity</h2><p>نبض المنافسة المباشر</p></div>
+            <span id="screenActivityStatus" class="screen-activity-live"><i></i> LIVE</span>
+          </div>
+          <div id="screenActivityList" class="screen-activity-list">
+            <div class="screen-activity-empty">بانتظار أول إجابة... شدّوا حيلكم!</div>
+          </div>
+          <p class="screen-activity-footnote">تظهر تفاعلات المشاركين مباشرة، وتبقى المراكز وترتيب الفائزين سرّية حتى لحظة الإعلان.</p>
+        </aside>
+      </div>
+      <div id="screenDemoNotice" class="demo-banner hidden" style="max-width:620px;margin:18px auto;text-align:center">وضع تجريبي محلي: شاشة العرض تتزامن فقط مع الصفحات المفتوحة على نفس المتصفح.</div>
+    </section>
+
+    <section id="countdownView" class="reveal-view">
+      <p class="eyebrow">اكتملت المراكز الثلاثة</p>
+      <h2 class="reveal-heading">استعدوا للتعرّف على الأبطال</h2>
+      <div id="countdownNumber" class="countdown-number">3</div>
+      <p class="screen-prompt">لحظات ونعلن الفائزين...</p>
+    </section>
+
+    <section id="winnersView" class="reveal-view">
+      <p class="eyebrow">أبطال المسابقة</p>
+      <h2 class="reveal-heading">الفائزون في «من يعرف عُمان أكثر؟»</h2>
+      <div class="winners-stage" id="winnersStage"></div>
+      <h2 class="reveal-heading" style="font-size:clamp(24px,4vw,42px);margin-top:16px">مبارك للفائزين!</h2>
+      <p class="screen-prompt">شكراً لكل من شارك واحتفل معنا.</p>
+    </section>
+    <div class="screen-footer-group">
+      <p class="screen-footer">كل عام وعُمان وأهلها بخير</p>
+      <p class="screen-footer screen-credit">
+          Made by Faisal Al Breiki & Juhaina Al Subhi
+      </p>
+    </div>
+  </main>
+  <!-- Replace these two MP3 files with your event music; see public/assets/audio/README.md. -->
+  <audio id="liveMusic" src="assets/audio/live.mp3" preload="none" loop></audio>
+  <audio id="revealMusic" src="assets/audio/win.mp3" preload="auto"></audio>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="js/config.js"></script>
+  <script>if (window.APP_CONFIG && window.APP_CONFIG.DEMO_MODE) document.write('<script src="../demo/demo-data.js"><\/script>');</script>
+  <script src="js/backend.js"></script>
+  <script src="js/screen.js"></script>
+</body>
+</html>
