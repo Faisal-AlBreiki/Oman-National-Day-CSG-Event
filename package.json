@@ -1,0 +1,9 @@
+{
+  "name": "oman-national-day-quiz",
+  "version": "10.4.0",
+  "private": true,
+  "description": "من يعرف عُمان أكثر؟ - National Day live quiz",
+  "scripts": {
+    "start": "python -m http.server 8000"
+  }
+}
