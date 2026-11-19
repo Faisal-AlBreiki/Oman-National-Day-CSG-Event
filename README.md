@@ -9,6 +9,23 @@ The presentation includes the **المسابقة الثقافية (Cultural Quiz
 
 ---
 
+## 🌐 Live Demo – Deployed on Netlify
+
+The project is deployed and accessible through the following interfaces:
+
+| Interface | Description | Link |
+|---|---|---|
+| Participant Page | Mobile interface for registration and answering quiz questions. | [Open Participant Page](https://csg-national-day.netlify.app/) |
+| Live Display | Large-screen interface showing live activity, competition status, and winner announcements. | [Open Live Display](https://csg-national-day.netlify.app/screen.html) |
+| Admin Dashboard | Organizer dashboard for managing participants, controlling the competition, and viewing live statistics. | [Open Admin Dashboard](https://csg-national-day.netlify.app/admin.html) |
+
+**Hosting:** Netlify
+
+**Backend:** Supabase
+
+**Note:** The Admin Dashboard requires authorized organizer credentials.
+
+
 ## Project overview
 
 The project contains three connected interfaces:
