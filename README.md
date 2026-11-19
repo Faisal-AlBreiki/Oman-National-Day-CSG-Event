@@ -182,6 +182,3 @@ This project was developed for the **Cultural Quiz (المسابقة الثقا�
 
 [Open the event presentation in Canva](https://canva.link/r3j89e9c2c3vdut)
 
-## License
-
-No open-source license is included. Unless a license is added by the contributors, reuse and redistribution of the project should be treated as not granted. Confirm that you have permission to publish all logos, images, fonts, and audio assets included in the repository.
